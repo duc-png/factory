@@ -1,0 +1,69 @@
+SELECT * FROM shopee_food.users;
+
+ALTER TABLE Users
+DROP COLUMN role;
+Use Shopee_Food;
+CREATE TABLE Roles (
+	roleID int auto_increment primary key,
+    roleName varchar(50) not null unique
+);
+
+create table User_Roles (
+	userRoleID INT AUTO_INCREMENT PRIMARY KEY,
+    userID INT NOT NULL,
+    roleID INT NOT NULL,
+    FOREIGN KEY (userID) REFERENCES Users(userID),
+    FOREIGN KEY (roleID) REFERENCES Roles(roleID)
+);
+
+CREATE TABLE Tokens (
+    tokenID INT AUTO_INCREMENT PRIMARY KEY,
+    userID INT NOT NULL,
+    token VARCHAR(512) NOT NULL,
+    tokenType ENUM('ACCESS', 'REFRESH') DEFAULT 'ACCESS',
+    issuedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    expiresAt TIMESTAMP,
+    revoked BOOLEAN DEFAULT FALSE,
+    deviceInfo VARCHAR(255),
+    FOREIGN KEY (userID) REFERENCES Users(userID)
+);
+
+ALTER TABLE Tokens
+ADD COLUMN ipAddress VARCHAR(45),
+ADD COLUMN userAgent VARCHAR(255);
+
+
+ALTER TABLE Shops
+ADD COLUMN status ENUM('pending', 'active', 'banned') DEFAULT 'pending',
+ADD COLUMN logoURL VARCHAR(255);
+
+
+ALTER TABLE Products
+ADD COLUMN description TEXT,
+ADD COLUMN isActive BOOLEAN DEFAULT TRUE;
+
+ALTER TABLE Orders
+ADD COLUMN paymentStatus ENUM('Pending', 'Completed', 'Failed') DEFAULT 'Pending',
+ADD COLUMN deliveryAddress TEXT;
+
+
+ALTER TABLE Payments
+MODIFY COLUMN paymentMethod ENUM('Cash', 'Bank', 'VNPay') NOT NULL;
+
+ALTER TABLE Reviews
+ADD COLUMN reviewType ENUM('product', 'shop', 'shipper') NOT NULL DEFAULT 'product';
+
+CREATE TABLE AuditLogs (
+    logID INT AUTO_INCREMENT PRIMARY KEY,
+    userID INT,
+    action VARCHAR(100) NOT NULL,
+    targetType VARCHAR(50),
+    targetID INT,
+    description TEXT,
+    ipAddress VARCHAR(45),
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (userID) REFERENCES Users(userID)
+);
+
+
+////
