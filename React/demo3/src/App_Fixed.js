@@ -6,21 +6,18 @@ import './App.css';
 // import ShoppingApp from './exercises/Exercise3_LocalMutation';
 // import LocalMutationDemo from './exercises/Exercise3_LocalMutation_Final';
 // import ShoppingAppPractice from './exercises/Exercise3_Practice_NoCSS';
-// import Challenge1 from './exercises/Exercise3_Challenge1_Discount';
+import Challenge1 from './exercises/Exercise3_Challenge1_Discount';
 // import Challenge2 from './exercises/Exercise3_Challenge2_Categories';
 // import Challenge3 from './exercises/Exercise3_Challenge3_ECommerce';
 // import TodoApp from './exercises/Exercise4_TodoApp';
-// import TodoAppTest from './exercises/Exercise4_Test_Simple';
-import TodoAppPractice from './exercises/Exercise4_Practice_NoCSS';
 
 function App() {
   return (
     <div className="App">
       {/* 🔄 THAY ĐỔI COMPONENT Ở ĐÂY */}
-      <TodoAppPractice />
+      <Challenge1/>
     </div>
-  );  
+  );
 }
-
 
 export default App;

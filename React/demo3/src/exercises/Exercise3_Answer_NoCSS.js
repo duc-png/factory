@@ -6,89 +6,64 @@
 */
 
 // BƯỚC 1: Component hiển thị 1 sản phẩm
-// function ProductItem({ name, price, quantity }) {
-//   const itemTotal = price * quantity;
-
-//   return (
-//     <li>
-//       {name} - ${price} x {quantity} = ${itemTotal}
-//     </li>
-//   );
-// }
-
-
 function ProductItem({ name, price, quantity }) {
     const itemTotal = price * quantity;
 
     return (
         <li>
-            {name} - ${price} * {quantity} = ${itemTotal}
+            {name} - ${price} x {quantity} = ${itemTotal}
         </li>
     );
 }
 
-
 // BƯỚC 2: Component hiển thị toàn bộ giỏ hàng
-// function ShoppingCart({ items }) {
-//   // LOCAL MUTATION - Tạo local variables
-//   const productElements = [];
-//   const totals = {
-//     totalAmount: 0,
-//     totalItems: 0,
-//     totalQuantity: 0
-//   };
-
-//   // For loop để xử lý từng item
-//   for (let i = 0; i < items.length; i++) {
-//     const item = items[i];
-
-//     // Push JSX element vào array (local mutation)
-//     productElements.push(
-//       <ProductItem 
-//         key={item.id}
-//         name={item.name}
-//         price={item.price}
-//         quantity={item.quantity}
-//       />
-//     );
-
-//     // Cập nhật totals object (local mutation)
-//     totals.totalAmount += item.price * item.quantity;
-//     totals.totalItems += 1;
-//     totals.totalQuantity += item.quantity;
-//   }
-
-//   return (
-//     <div>
-//       <h2>🛒 Shopping Cart</h2>
-
-//       {/* Render danh sách sản phẩm */}
-//       <ul>
-//         {productElements}
-//       </ul>
-
-//       {/* Hiển thị thông tin tổng */}
-//       <div>
-//         <h3>📊 Cart Summary</h3>
-//         <p>Total Items: {totals.totalItems}</p>
-//         <p>Total Quantity: {totals.totalQuantity}</p>
-//         <p>Total Amount: ${totals.totalAmount}</p>
-//       </div>
-//     </div>
-//   );
-// }
-
 function ShoppingCart({ items }) {
-    const productElement = [];
+    // LOCAL MUTATION - Tạo local variables
+    const productElements = [];
     const totals = {
         totalAmount: 0,
-        totalItem: 0,
+        totalItems: 0,
         totalQuantity: 0
     };
 
-    for (let i = 0; i < items.lenght; i++) {
+    // For loop để xử lý từng item
+    for (let i = 0; i < items.length; i++) {
         const item = items[i];
+
+        // Push JSX element vào array (local mutation)
+        productElements.push(
+            <ProductItem
+                key={item.id}
+                name={item.name}
+                price={item.price}
+                quantity={item.quantity}
+            />
+        );
+
+        // Cập nhật totals object (local mutation)
+        totals.totalAmount += item.price * item.quantity;
+        totals.totalItems += 1;
+        totals.totalQuantity += item.quantity;
     }
+
+    return (
+        <div>
+            <h2>🛒 Shopping Cart</h2>
+
+            {/* Render danh sách sản phẩm */}
+            <ul>
+                {productElements}
+            </ul>
+
+            {/* Hiển thị thông tin tổng */}
+            <div>
+                <h3>📊 Cart Summary</h3>
+                <p>Total Items: {totals.totalItems}</p>
+                <p>Total Quantity: {totals.totalQuantity}</p>
+                <p>Total Amount: ${totals.totalAmount}</p>
+            </div>
+        </div>
+    );
 }
 
 // BƯỚC 3: Component chính - App
