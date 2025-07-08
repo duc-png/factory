@@ -58,26 +58,26 @@ public class User {
     private String avatarURL;
 
     @Column
-    private java.sql.Timestamp createdAt;
+    private java.time.LocalDateTime createdAt;
 
     @Column
-    private java.sql.Timestamp lastLogin;
+    private java.time.LocalDateTime lastLogin;
 
     // Authentication fields
     @Column
-    private java.sql.Timestamp updatedAt;
+    private java.time.LocalDateTime updatedAt;
 
     @Column
     private Boolean emailVerified = false;
 
     @Column
-    private java.sql.Timestamp emailVerifiedAt;
+    private java.time.LocalDateTime emailVerifiedAt;
 
     @Column
     private Integer loginAttempts = 0;
 
     @Column
-    private java.sql.Timestamp lockedUntil;
+    private java.time.LocalDateTime lockedUntil;
 
     @Column
     private Boolean twoFactorEnabled = false;
@@ -91,6 +91,7 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
+
 
     @OneToMany(mappedBy = "user")
     private List<UserRole> userRoles;
@@ -132,13 +133,27 @@ public class User {
     @PrePersist
     protected void onCreate() {
         if (createdAt == null) {
-            createdAt = new java.sql.Timestamp(System.currentTimeMillis());
+            createdAt = java.time.LocalDateTime.now();
         }
         updatedAt = createdAt;
     }
 
     @PreUpdate
     protected void onUpdate() {
-        updatedAt = new java.sql.Timestamp(System.currentTimeMillis());
+        updatedAt = java.time.LocalDateTime.now();
+    }
+
+    // Helper method to get user roles as string
+    public String getRole() {
+        if (userRoles != null && !userRoles.isEmpty()) {
+            return userRoles.get(0).getRole().getRoleName();
+        }
+        return "CUSTOMER"; // default role
+    }
+
+    // Helper method to get full name
+    public String getFullName() {
+        // You may want to add firstName and lastName fields
+        return username; // For now, return username as full name
     }
 }

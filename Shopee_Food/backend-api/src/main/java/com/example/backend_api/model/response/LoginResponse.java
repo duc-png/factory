@@ -1,27 +1,36 @@
 package com.example.backend_api.model.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class LoginResponse {
     private String accessToken;
     private String refreshToken;
     private String tokenType = "Bearer";
-    private Long expiresIn;
-    private UserInfo user;
 
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    public static class UserInfo {
-        private Integer userId;
-        private String username;
-        private String email;
-        private String fullName;
-        private String role;
+    public LoginResponse(String accessToken, String refreshToken) {
+        this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
+
+    public String getTokenType() {
+        return tokenType;
+    }
+
+    public void setTokenType(String tokenType) {
+        this.tokenType = tokenType;
     }
 }
