@@ -116,7 +116,7 @@ CREATE TABLE `cart` (
   CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`productID`) REFERENCES `products` (`productID`),
   CONSTRAINT `cart_ibfk_3` FOREIGN KEY (`optionValueID`) REFERENCES `option_values` (`valueID`),
   CONSTRAINT `FK33vax10oseqmh2ld7mycivr8u` FOREIGN KEY (`option_valueid`) REFERENCES `option_values` (`valueID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -330,7 +330,7 @@ CREATE TABLE `option_values` (
   PRIMARY KEY (`valueID`),
   KEY `optionID` (`optionID`),
   CONSTRAINT `option_values_ibfk_1` FOREIGN KEY (`optionID`) REFERENCES `product_options` (`optionID`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -367,7 +367,7 @@ CREATE TABLE `order_items` (
   CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`),
   CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`productID`) REFERENCES `products` (`productID`),
   CONSTRAINT `order_items_ibfk_3` FOREIGN KEY (`optionValueID`) REFERENCES `option_values` (`valueID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -397,7 +397,7 @@ CREATE TABLE `order_toppings` (
   KEY `toppingID` (`toppingID`),
   CONSTRAINT `order_toppings_ibfk_1` FOREIGN KEY (`orderItemID`) REFERENCES `order_items` (`orderItemID`),
   CONSTRAINT `order_toppings_ibfk_2` FOREIGN KEY (`toppingID`) REFERENCES `product_toppings` (`toppingID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -760,7 +760,7 @@ CREATE TABLE `roles` (
   UNIQUE KEY `roleName` (`roleName`),
   UNIQUE KEY `UKovpqau8r3lgfnmak7xyel2bt0` (`role_name`),
   KEY `idx_roles_active` (`isActive`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1005,7 +1005,7 @@ CREATE TABLE `topping_categories` (
   PRIMARY KEY (`categoryID`),
   UNIQUE KEY `categoryName` (`categoryName`),
   UNIQUE KEY `UKp437bp9wsynxeem0emcxc73cf` (`category_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1133,7 +1133,7 @@ CREATE TABLE `users` (
   KEY `idx_users_provider_lookup` (`provider`,`providerId`),
   KEY `idx_users_email_active` (`email`,`isActive`),
   KEY `idx_users_username_active` (`username`,`isActive`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1189,4 +1189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-01 10:29:56
+-- Dump completed on 2025-07-17  8:18:39
